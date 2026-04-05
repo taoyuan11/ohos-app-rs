@@ -55,8 +55,14 @@ cargo run -- package --abi x86_64
 也可以安装后按 Cargo 子命令调用：
 
 ```powershell
-cargo install --path .
+cargo install cargo-harmony-app
 cargo harmony-app package --manifest-path .\examples\counter-native\Cargo.toml
+```
+
+本地开发时也可以直接安装当前仓库：
+
+```powershell
+cargo install --path .
 ```
 
 ## 配置
