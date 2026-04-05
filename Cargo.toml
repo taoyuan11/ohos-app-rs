@@ -1,17 +1,35 @@
 [package]
-name = "harmony_app"
+name = "cargo-harmony-app"
+authors = ["a2542209451@gmail.com"]
 version = "0.1.0"
 edition = "2024"
 description = "Cargo subcommand for packaging Rust GUI apps as HarmonyOS applications"
-license = "MIT OR Apache-2.0"
+license = "Apache-2.0"
+repository = "https://github.com/taoyuan11/harmony-app-rs"
+homepage = "https://github.com/taoyuan11/harmony-app-rs"
+documentation = "https://docs.rs/cargo-harmony-app"
+readme = "README.md"
+keywords = ["cargo-subcommand", "harmonyos", "ohos", "packaging"]
+categories = ["command-line-utilities", "development-tools::cargo-plugins"]
+
+exclude = [
+    "examples/*"
+]
+
+[lib]
+name = "harmony_app"
+
+[[bin]]
+name = "cargo-harmony-app"
+path = "src/main.rs"
 
 [dependencies]
-cargo_metadata = "0.20"
-clap = { version = "4.5", features = ["derive"] }
+cargo_metadata = "0.23"
+clap = { version = "4.6", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 thiserror = "2.0"
-toml = "0.8"
+toml = "1.1"
 
 [dev-dependencies]
 tempfile = "3.12"
