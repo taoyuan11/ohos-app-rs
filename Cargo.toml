@@ -1,0 +1,17 @@
+[package]
+name = "harmony_app"
+version = "0.1.0"
+edition = "2024"
+description = "Cargo subcommand for packaging Rust GUI apps as HarmonyOS applications"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+cargo_metadata = "0.20"
+clap = { version = "4.5", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+toml = "0.8"
+
+[dev-dependencies]
+tempfile = "3.12"

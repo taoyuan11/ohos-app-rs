@@ -1,0 +1,74 @@
+# cargo-harmony-app
+
+`cargo-harmony-app` 是一个 Cargo 外部子命令，用来把 Rust library 项目包装成 HarmonyOS Stage Model 工程，并串联 HarmonyOS 打包流程。
+
+## 能力
+
+- `cargo harmony-app init`
+- `cargo harmony-app build`
+- `cargo harmony-app package`
+
+`package` 默认产出 `.hap`，可通过 `--artifact app` 切换为 `.app`。
+也支持通过 `--abi arm64-v8a|armeabi-v7a|x86_64|loongarch64` 切换目标架构；例如模拟器可用 `--abi x86_64`。
+
+默认针对当前机器上的以下环境：
+
+- DevEco Studio: `D:\Apps\code\DevEco Studio`
+- `ohpm`: `D:\Apps\code\DevEco Studio\tools\ohpm\bin\ohpm.bat`
+- OpenHarmony SDK 根目录: `C:\Users\25422\AppData\Local\OpenHarmony\Sdk`
+- 自动选择最新已安装 SDK 版本
+
+## Rust 侧约定
+
+首版采用 `ArkUI 壳 + Rust 原生库 + C ABI` 路线。Rust 项目需要：
+
+- 有 `lib` target
+- 导出以下符号
+
+打包时工具会把 Rust 库按 `staticlib` 方式编进 `libentry.so`，避免运行时再去解析额外的 Rust `.so`。如果你希望本地也直接生成静态库，推荐：
+
+```toml
+[lib]
+crate-type = ["cdylib", "staticlib"]
+```
+
+```rust
+#[unsafe(no_mangle)]
+pub extern "C" fn harmony_app_get_message() -> *const std::ffi::c_char;
+
+#[unsafe(no_mangle)]
+pub extern "C" fn harmony_app_increment_counter() -> u32;
+```
+
+## 快速开始
+
+示例工程位于 [examples/counter-native](/D:/Project/Rust/libs/harmony-app/examples/counter-native)。
+
+```powershell
+cd examples/counter-native
+cargo run -- init
+cargo run -- build
+cargo run -- package
+cargo run -- package --abi x86_64
+```
+
+也可以安装后按 Cargo 子命令调用：
+
+```powershell
+cargo install --path .
+cargo harmony-app package --manifest-path .\examples\counter-native\Cargo.toml
+```
+
+## 配置
+
+如果项目根目录下存在 `harmony-app.toml`，会作为默认值来源。支持字段：
+
+- `deveco_studio_dir`
+- `ohpm_path`
+- `sdk_root`
+- `sdk_version`
+- `bundle_name`
+- `module_name`
+- `target`
+- `profile`
+- `output_dir`

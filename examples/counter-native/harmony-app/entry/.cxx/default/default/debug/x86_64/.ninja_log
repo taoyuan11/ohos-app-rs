@@ -1,0 +1,7 @@
+# ninja log v6
+3	53	7970808470338350	CMakeFiles/entry.dir/napi_init.cpp.o	1e4a296cb5cf0ca3
+53	161	7970808470833264	out/libentry.so	5d6c89de3280537c
+1	70	7970813824327502	build.ninja	4f276f4d9873ada2
+1	7	7970813799363912	clean	b9a5facf98c4236d
+3	42	7970813824938382	CMakeFiles/entry.dir/napi_init.cpp.o	1e4a296cb5cf0ca3
+42	134	7970813825325969	out/libentry.so	5d6c89de3280537c
