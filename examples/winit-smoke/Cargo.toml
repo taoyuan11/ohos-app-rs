@@ -10,6 +10,6 @@ crate-type = ["staticlib", "rlib"]
 dpi = "0.1.2"
 pollster = "0.4"
 raw-window-handle = { version = "0.6.2", features = ["std"] }
-wgpu = "29"
+wgpu = "27"
 winit-core = "0.31.0-beta.2"
 tgui-winit-ohos = "0.31.0-beta.2"

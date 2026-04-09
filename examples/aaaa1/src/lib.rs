@@ -3,7 +3,7 @@ use winit_core::application::ApplicationHandler;
 use winit_core::event::{StartCause, WindowEvent};
 use winit_core::event_loop::ActiveEventLoop as CoreActiveEventLoop;
 use winit_core::window::{Window as CoreWindow, WindowAttributes, WindowId};
-use winit_ohos::{Window as OhosWindow, export_ohos_winit_app};
+use tgui_winit_ohos::{Window as OhosWindow, export_ohos_winit_app};
 
 #[derive(Default)]
 struct SmokeApp {
