@@ -12,4 +12,4 @@ pollster = "0.4"
 raw-window-handle = { version = "0.6.2", features = ["std"] }
 wgpu = "29"
 winit-core = "0.31.0-beta.2"
-winit-ohos = { path = "../../../winit-ohos" }
+tgui-winit-ohos = "0.31.0-beta.2"
