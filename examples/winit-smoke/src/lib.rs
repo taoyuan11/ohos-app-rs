@@ -13,7 +13,7 @@ use winit_core::application::ApplicationHandler;
 use winit_core::event::{StartCause, WindowEvent};
 use winit_core::event_loop::ActiveEventLoop as CoreActiveEventLoop;
 use winit_core::window::{Window as CoreWindow, WindowAttributes, WindowId};
-use tgui_winit_ohos::{Window as OhosWindow, export_ohos_winit_app};
+use tgui_winit_ohos::{Window as OhosWindow, export_ohos_winit_app, log, OhosLogLevel};
 
 const TRIANGLE_SHADER: &str = r#"
 @vertex
@@ -126,12 +126,14 @@ impl ApplicationHandler for SmokeApp {
     ) {
         match event {
             WindowEvent::SurfaceResized(size) => {
+                log::deveco_log_with_level(OhosLogLevel::Info, "111111111111111111111111111111111111111111111");
                 if let Some(renderer) = self.renderer.as_mut() {
                     renderer.resize(size.width, size.height);
                 }
                 self.request_redraw();
             }
             WindowEvent::ScaleFactorChanged { .. } => {
+                log::deveco_log_with_level(OhosLogLevel::Info, "111111111111111111111111111111111111111111111");
                 if let Some(window) = self.window.as_ref() {
                     let size = window.surface_size();
                     if let Some(renderer) = self.renderer.as_mut() {
@@ -162,6 +164,9 @@ impl ApplicationHandler for SmokeApp {
             WindowEvent::CloseRequested | WindowEvent::Destroyed => {
                 eprintln!("winit-smoke window closing");
                 event_loop.exit();
+            }
+            WindowEvent::PointerButton { device_id: _, state: _, position: _, primary: _, button: _ } => {
+                log::deveco_log_with_level(OhosLogLevel::Info, "111111111111111111111111111111111111111111111")
             }
             _ => {}
         }
